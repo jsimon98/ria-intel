@@ -1,0 +1,68 @@
+version: 1
+
+tables:
+
+  firm_master_bi:
+    primary_key: [crd]
+    columns:
+      crd:               {dtype: int64,   nullable: false, aliases: [CRD, FIRM_CRD, FIRMCRD, ADVISER_CRD]}
+      firm_legal_name:   {dtype: string,  nullable: false, aliases: [FIRM_NAME, "Firm Legal Name"]}
+      primary_business_name: {dtype: string, nullable: true,  aliases: [PRIMARY_BUSINESS_NAME]}
+      ownership_type:    {dtype: string,  nullable: true,  aliases: [OWNERSHIP_TYPE]}
+      custody:           {dtype: boolean, nullable: true,  aliases: [CUSTODY]}
+      disciplinary_info_provided: {dtype: boolean, nullable: true, aliases: [DISCIPLINARY_INFO_PROVIDED]}
+      employees_total:   {dtype: int64,   nullable: true,  aliases: [EMPLOYEES_TOTAL, "Employees – Total", 5I]}
+      aum_nondisc_usd:   {dtype: float64, nullable: true,  aliases: [AUM_NONDISC_USD, "Regulatory AUM – Non-Discretionary (USD)", 5F2B]}
+      aum_total_usd:     {dtype: float64, nullable: true,  aliases: [AUM_TOTAL_USD, "Regulatory AUM – Total (USD)", 5A]}
+      as_of_date:        {dtype: date,    nullable: true,  aliases: [REPORT_DATE, AS_OF_DATE, ASOF_DATE]}
+    order:
+      - crd
+      - firm_legal_name
+      - primary_business_name
+      - ownership_type
+      - custody
+      - disciplinary_info_provided
+      - employees_total
+      - aum_nondisc_usd
+      - aum_total_usd
+      - as_of_date
+
+  firm_timeseries_bi:
+    primary_key: [crd, as_of_date]
+    columns:
+      crd:               {dtype: int64,   nullable: false, aliases: [CRD, FIRM_CRD, FIRMCRD, ADVISER_CRD]}
+      as_of_date:        {dtype: date,    nullable: false, aliases: [REPORT_DATE, AS_OF_DATE, ASOF_DATE]}
+      # AUM (map raw ADV codes to canonical)
+      aum_total_usd:     {dtype: float64, nullable: true,  aliases: [AUM_TOTAL_USD, "Regulatory AUM – Total (USD)", 5A]}
+      aum_disc_usd:      {dtype: float64, nullable: true,  aliases: [AUM_DISC_USD, "Regulatory AUM – Discretionary (USD)", 5F2A]}
+      aum_nondisc_usd:   {dtype: float64, nullable: true,  aliases: [AUM_NONDISC_USD, "Regulatory AUM – Non-Discretionary (USD)", 5F2B]}
+      # Headcount (ADV Item 5I is total employees)
+      employees_total:   {dtype: int64,   nullable: true,  aliases: [EMPLOYEES_TOTAL, "Employees – Total", 5I]}
+      # Optional keeps (not in PK/order, but keep as passthrough if present)
+      datesubmitted:     {dtype: timestamp, nullable: true, aliases: [DATESUBMITTED, DATE_SUBMITTED, SUBMISSION_DATE]}
+      filing_id:         {dtype: string,    nullable: true, aliases: [FILING_ID, SUBMISSION_ID, ACCESSION_NUMBER]}
+      state:             {dtype: string,    nullable: true, aliases: [1F1_STATE]}
+      city:              {dtype: string,    nullable: true, aliases: [1F1_CITY]}
+      lei:               {dtype: string,    nullable: true, aliases: [1P]}
+      # If you have branch counts, map them here (adjust to your source)
+      branch_count:      {dtype: int64,     nullable: true, aliases: [BRANCH_COUNT, BRANCHES, "1F_BRANCH_COUNT"]}
+      # Raw metrics you want to keep (optional)
+      5f1:               {dtype: float64,   nullable: true, aliases: [5F1]}
+      5f3:               {dtype: float64,   nullable: true, aliases: [5F3]}
+      5d1a:              {dtype: float64,   nullable: true, aliases: [5D1A]}
+      5d1b:              {dtype: float64,   nullable: true, aliases: [5D1B]}
+      5d2a:              {dtype: float64,   nullable: true, aliases: [5D2A]}
+      5d2b:              {dtype: float64,   nullable: true, aliases: [5D2B]}
+      5g1:               {dtype: float64,   nullable: true, aliases: [5G1]}
+      5g2:               {dtype: float64,   nullable: true, aliases: [5G2]}
+      5g3:               {dtype: float64,   nullable: true, aliases: [5G3]}
+      5h:                {dtype: float64,   nullable: true, aliases: [5H]}
+    order:
+      - crd
+      - as_of_date
+      - aum_total_usd
+      - aum_disc_usd
+      - aum_nondisc_usd
+      - employees_total
+      - branch_count
+      # leave the rest unordered so they appear after the canonical set

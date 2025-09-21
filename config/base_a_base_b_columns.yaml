@@ -1,0 +1,332 @@
+# base_a_base_b_columns.yaml
+columns:
+  # ─────────── Identity & Registration (Item 1) ───────────
+  1A:
+    label: Firm Legal Name
+    type: string
+  1B1:
+    label: Primary Business Name
+    type: string
+  1C_BUSINESS:
+    label: Business Name Change
+    type: boolean
+  1C_LEGAL:
+    label: Legal Name Change
+    type: boolean
+  1C_NEW_NAME:
+    label: New Business Name
+    type: string
+  1D:
+    label: SEC File # (801/802)
+    type: string
+  1E1:
+    label: CRD Number
+    type: number
+  1N_CIK:
+    label: CIK Number
+    type: string
+
+  # Principal Office (Item 1.F)
+  1F1_STREET_1:
+    label: Principal Office Street 1
+    type: string
+  1F1_STREET_2:
+    label: Principal Office Street 2
+    type: string
+  1F1_CITY:
+    label: Principal Office City
+    type: string
+  1F1_STATE:
+    label: Principal Office State
+    type: string
+  1F1_POSTAL:
+    label: Principal Office Postal Code
+    type: string
+  1F1_COUNTRY:
+    label: Principal Office Country
+    type: string
+  1F1_PRIVATE:
+    label: Principal Address is Private Residence
+    type: boolean
+
+  # Mailing Address (Item 1.G)
+  1G_STREET_1:
+    label: Mailing Street 1
+    type: string
+  1G_STREET_2:
+    label: Mailing Street 2
+    type: string
+  1G_CITY:
+    label: Mailing City
+    type: string
+  1G_STATE:
+    label: Mailing State
+    type: string
+  1G_POSTAL:
+    label: Mailing Postal Code
+    type: string
+  1G_COUNTRY:
+    label: Mailing Country
+    type: string
+  1G_PRIVATE:
+    label: Mailing Address is Private Residence
+    type: boolean
+
+  # Misc Item 1 flags
+  1I:
+    label: Uses Websites / Public Social Media
+    type: boolean
+  1L:
+    label: Books & Records Not at Principal Office
+    type: boolean
+  1M:
+    label: Registered with Foreign Financial Authority
+    type: boolean
+  1N:
+    label: Public Reporting Company
+    type: boolean
+  1O:
+    label: ≥ $1B Total Assets (Not AUM)
+    type: boolean
+  1OAMOUNT:
+    label: Total Assets Bucket
+    type: string
+  1P:
+    label: Legal Entity Identifier (LEI)
+    type: string
+
+  # ─────────── Organization & Succession (Items 3–4) ───────────
+  3A:
+    label: Form of Organization
+    type: string
+  3B:
+    label: Fiscal Year End (Month)
+    type: string
+  3C:
+    label: State/Country of Organization
+    type: string
+  4A:
+    label: Successor to Another Adviser?
+    type: boolean
+  4B:
+    label: Date of Succession
+    type: date
+
+  # ─────────── Advisory Business, Clients, AUM (Item 5) ───────────
+  5A:
+    label: Employees – Total
+    type: number
+
+  # Client types (5.D) — counts or amounts vary by feed; set string if text-coded, number if numeric in your silver
+  5D1A:
+    label: Clients – Individuals (Non-HNW)
+    type: string
+  5D1B:
+    label: Clients – High Net Worth Individuals
+    type: string
+  5D1F:
+    label: Clients – Pension/Profit-Sharing Plans
+    type: string
+  5D1N_OTHER:
+    label: Clients – Other (Describe)
+    type: string
+
+  # Engagement (5.E)
+  5E1:
+    label: Comp – % of AUM
+    type: boolean
+  5E2:
+    label: Comp – Hourly
+    type: boolean
+  5E3:
+    label: Comp – Subscription
+    type: boolean
+  5E4:
+    label: Comp – Fixed Fees
+    type: boolean
+  5E5:
+    label: Comp – Commissions
+    type: boolean
+  5E6:
+    label: Comp – Performance-Based
+    type: boolean
+  5E7:
+    label: Comp – Other
+    type: boolean
+  5E7_OTHER:
+    label: Comp – Other (Describe)
+    type: string
+
+  # Regulatory AUM (5.F) — USD
+  5F1:
+    label: Regulatory AUM – Discretionary (USD)
+    type: number
+  5F2A:
+    label: Regulatory AUM – Non-Discretionary (USD)
+    type: number
+  5F3:
+    label: Regulatory AUM – Total (USD)
+    type: number
+
+  # Advisory activities, wrap, etc. (5.G–5.I) — keep as booleans/strings as needed
+  5G1:
+    label: Services – Financial Planning
+    type: boolean
+  5G2:
+    label: Services – PM for Individuals/Small Biz
+    type: boolean
+  5G3:
+    label: Services – PM for Investment Companies
+    type: boolean
+  5G4:
+    label: Services – PM for Pooled Vehicles
+    type: boolean
+  5G5:
+    label: Services – PM for Institutions
+    type: boolean
+  5G6:
+    label: Services – Pension Consulting
+    type: boolean
+  5G7:
+    label: Services – Selection of Other Advisers
+    type: boolean
+  5G8:
+    label: Services – Publications/Newsletters
+    type: boolean
+  5G9:
+    label: Services – Ratings/Pricing
+    type: boolean
+  5G10:
+    label: Services – Market Timing
+    type: boolean
+  5G11:
+    label: Services – Educational Seminars
+    type: boolean
+  5G12:
+    label: Services – Other
+    type: boolean
+  5G12_OTHER:
+    label: Services – Other (Describe)
+    type: string
+
+  # Custody (Item 9) — summarized
+  7B:
+    label: Custody
+    type: boolean
+
+  # ─────────── Marketing (5.L), Other Biz, Affiliations (Items 6–7) — (subset, extend as needed) ───────────
+  6A1:
+    label: Other Biz – Broker/Dealer
+    type: boolean
+  6A6:
+    label: Other Biz – Insurance
+    type: boolean
+  7A1:
+    label: Related Person – Broker/Dealer
+    type: boolean
+  7A2:
+    label: Related Person – Other Adviser
+    type: boolean
+
+  # ─────────── Disclosures (Item 11) — keep boolean flags; details live on DRPs ───────────
+  '11':
+    label: "Disclosure: Disciplinary Info Provided"
+    type: boolean
+  11A1:
+    label: Criminal – Felony Conviction
+    type: boolean
+  11A2:
+    label: Criminal – Felony Charge (Pending)
+    type: boolean
+  11B1:
+    label: Criminal – Misdemeanor (Investment/Fraud)
+    type: boolean
+  11B2:
+    label: Criminal – Misdemeanor Charge (Pending)
+    type: boolean
+  11C1:
+    label: SEC/CFTC – False Statement/Omission
+    type: boolean
+  11C2:
+    label: SEC/CFTC – Violation Found
+    type: boolean
+  11C3:
+    label: SEC/CFTC – Cause of Biz Restriction
+    type: boolean
+  11C4:
+    label: SEC/CFTC – Order Entered
+    type: boolean
+  11C5:
+    label: SEC/CFTC – Civil Penalty/C&D
+    type: boolean
+  11D1:
+    label: Other Regulator – False/Dishonest/Unethical
+    type: boolean
+  11D2:
+    label: Other Regulator – Violation Found
+    type: boolean
+  11D3:
+    label: Other Regulator – Cause of Biz Restriction
+    type: boolean
+  11D4:
+    label: Other Regulator – Order (10 Years)
+    type: boolean
+  11D5:
+    label: Other Regulator – License/Assoc Restriction
+    type: boolean
+  11E1:
+    label: SRO/Exchange – False Statement
+    type: boolean
+  11E2:
+    label: SRO/Exchange – Rule Violation
+    type: boolean
+  11E3:
+    label: SRO/Exchange – Biz Restriction
+    type: boolean
+  11E4:
+    label: SRO/Exchange – Discipline/Bar/Suspension
+    type: boolean
+  11F:
+    label: Authorization Revoked (Attorney/CPA/Fed Contractor)
+    type: boolean
+  11G:
+    label: Pending Regulatory Proceeding
+    type: boolean
+  11H1A:
+    label: Civil – Injunction (Investment-Related)
+    type: boolean
+  11H1B:
+    label: Civil – Violation Found (Investment-Related)
+    type: boolean
+  11H1C:
+    label: Civil – Dismissed per Settlement
+    type: boolean
+  11H2:
+    label: Civil – Pending Proceeding
+    type: boolean
+
+  # ─────────── Filing Metadata (always useful for BI) ───────────
+  REPORT_DATE:
+    label: Report Date
+    type: date
+  DATESUBMITTED:
+    label: Date Submitted
+    type: date
+  EXECUTION_DATE:
+    label: Execution Date
+    type: date
+  EXECUTION_TYPE:
+    label: Execution Type
+    type: string
+  FILING_ID:
+    label: Filing ID
+    type: string
+  FORMVERSION:
+    label: Form Version
+    type: string
+  SIGNATORY:
+    label: Signatory
+    type: string
+  TITLE:
+    label: Title
+    type: string
